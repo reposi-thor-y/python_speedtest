@@ -1,7 +1,7 @@
 [project]
 name = "python-speedtest"
-version = "0.1.0"
-description = "Simple script to assess cpu-performance"
+version = "0.2.0"
+description = "Simple script to assess cpu or gpu-performance"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

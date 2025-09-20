@@ -56,11 +56,11 @@ device = args.device
 
 # Configure XGBoost parameters based on device choice
 if device == "gpu":
-    xgb_params = {"tree_method": "gpu_hist", "gpu_id": args.gpu_id}
-    print(f"Using GPU device (ID: {args.gpu_id}) for training")
+    xgb_params = {"tree_method": "hist", "device": f"cuda:{args.gpu_id}"}
+    print(f"Using GPU device (CUDA:{args.gpu_id}) for training")
 else:
-    xgb_params = {"tree_method": "hist"}
-    print("Using CPU for training")
+    xgb_params = {"tree_method": "hist", "device": "cpu", "nthread": 24}
+    print("Using CPU for training with 24 threads")
 
 # Set random seed for reproducibility
 np.random.seed(args.seed)
@@ -104,7 +104,7 @@ print(f"Fitting model...(done {num_passes} times.)")
 fit_time_list = []
 try:
     for n in range(num_passes):
-        print(f"  Pass {n + 1}/{num_passes}...", end="", flush=True)
+        print(f"  Pass {n+1}/{num_passes}...", end="", flush=True)
         n_model_fit_starting_time = time.time()
         model = XGBClassifier(**xgb_params)
         model.fit(X_train, y_train)
@@ -129,9 +129,23 @@ print(f"Predicting with fitted model...(done {num_passes} times.)")
 pred_time_list = []
 try:
     for n in range(num_passes):
-        print(f"  Pass {n + 1}/{num_passes}...", end="", flush=True)
+        print(f"  Pass {n+1}/{num_passes}...", end="", flush=True)
         pred_start_time = time.time()
-        sk_pred = model.predict(X_test)
+        if device == "gpu":
+            # Try different approaches to avoid device mismatch warning
+            try:
+                # Method 1: Create DMatrix without device parameter (older XGBoost versions)
+                import xgboost as xgb
+                dtest = xgb.DMatrix(X_test)
+                # Set device on the booster before prediction
+                booster = model.get_booster()
+                booster.set_param({"device": f"cuda:{args.gpu_id}"})
+                sk_pred = booster.predict(dtest)
+            except Exception:
+                # Fallback to standard prediction (will show warning)
+                sk_pred = model.predict(X_test)
+        else:
+            sk_pred = model.predict(X_test)
         sk_pred = np.round(sk_pred)
         pred_stop_time = time.time()
         elapsed = pred_stop_time - pred_start_time
@@ -146,9 +160,7 @@ except Exception as e:
     sys.exit(1)
 # Calculate total benchmark time
 data_prep_time = dataset_prep_stop_time - dataset_prep_start_time
-total_benchmark_time = (
-    data_prep_time + (mean_fitting_time * num_passes) + (mean_pred_time * num_passes)
-)
+total_benchmark_time = data_prep_time + (mean_fitting_time * num_passes) + (mean_pred_time * num_passes)
 
 # Print results
 print("\n" + "=" * 50)
@@ -156,14 +168,12 @@ print(f"BENCHMARK RESULTS")
 print("=" * 50)
 print(f"Device:                 {device.upper()}")
 if device == "gpu":
-    print(f"GPU ID:             {args.gpu_id}")
+    print(f"GPU ID:                 {args.gpu_id}")
 print(f"Model accuracy:         {100 * sk_acc:.2f}%")
 print(f"Dataset size:           {dataset_size}")
 print(f"Number of passes:       {num_passes}")
 print(f"Data prep time:         {data_prep_time:.3f} seconds")
-print(
-    f"Avg. fitting time:      {mean_fitting_time:.4f} seconds (±{std_fitting_time:.4f})"
-)
+print(f"Avg. fitting time:      {mean_fitting_time:.4f} seconds (±{std_fitting_time:.4f})")
 print(f"Avg. prediction time:   {mean_pred_time:.4f} seconds (±{std_pred_time:.4f})")
 print(f"Total benchmark time:   {total_benchmark_time:.3f} seconds")
 print("=" * 50)
