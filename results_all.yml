@@ -1,0 +1,80 @@
+BaselineInfo:
+  WebDBID: -1
+  TimeStamp: 20250921103812
+Version:
+  Major: 11
+  Minor: 0
+  Build: 1002
+  SpecialBuildName: ""
+  ptArchitecture: x86_64_linux
+Results:
+  Results Complete: true
+  NumTestProcesses: 24
+  CPU_INTEGER_MATH: 166988.63933333333
+  CPU_FLOATINGPOINT_MATH: 90810.759148864439
+  CPU_PRIME: 307.55892031990817
+  CPU_SORTING: 83056.143433911566
+  CPU_ENCRYPTION: 41178.594898125993
+  CPU_COMPRESSION: 652547.28238827945
+  CPU_SINGLETHREAD: 4257.6095542550293
+  CPU_PHYSICS: 3191.5437322785383
+  CPU_MATRIX_MULT_SSE: 44424.188243403492
+  CPU_mm: 4250.5418323138038
+  CPU_sse: 18594.86929237705
+  CPU_fma: 57565.704953742716
+  CPU_avx: 45863.099111100142
+  CPU_avx512: 55673.079616394105
+  m_CPU_enc_SHA: 57571440789.084534
+  m_CPU_enc_AES: 39161574340.09819
+  m_CPU_enc_ECDSA: 32803643842.50935
+  ME_ALLOC_S: 11977.547255944972
+  ME_READ_S: 41302.921484375001
+  ME_READ_L: 38359.1875
+  ME_WRITE: 24086.201171875
+  ME_LARGE: 21417
+  ME_LATENCY: 53.982851104670992
+  ME_THREADED: 56468.083984375
+  SUMM_CPU: 51370.201402121405
+  SUMM_ME: 3493.9237627631032
+SystemInformation:
+  OSName: CachyOS
+  Kernel: 6.16.8-2-cachyos
+  Device: ""
+  Processor: AMD Ryzen 9 7900 12-Core Processor
+  NumSockets: 1
+  Manufacturer: AuthenticAMD
+  NumCores: 12
+  NumLogicals: 24
+  CPUFrequency: 5485
+  Memory: 31233
+  MemModuleInfo:
+    iNumMemSticks: 4
+    DIMM 1:
+      manufacturer: ""
+      modulePartNo: ""
+      memType: Unknown
+      size: 0
+      clkspeed: 0
+      moduleVoltage: 0
+    DIMM 2:
+      manufacturer: Kingston
+      modulePartNo: "KF560C36-16                   "
+      memType: DDR5
+      size: 16
+      clkspeed: 2400
+      moduleVoltage: 1.10000002
+    DIMM 3:
+      manufacturer: ""
+      modulePartNo: ""
+      memType: Unknown
+      size: 0
+      clkspeed: 0
+      moduleVoltage: 0
+    DIMM 4:
+      manufacturer: Kingston
+      modulePartNo: "KF560C36-16                   "
+      memType: DDR5
+      size: 16
+      clkspeed: 2400
+      moduleVoltage: 1.10000002
+Checksum: 6628A1364C428621B6C4C89143F0D0AD68C2E4B8

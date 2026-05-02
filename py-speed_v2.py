@@ -2,7 +2,7 @@ import argparse
 import time
 import numpy as np
 import pandas as pd
-import os
+# import os
 import sys
 from sklearn import preprocessing
 from sklearn.metrics import accuracy_score

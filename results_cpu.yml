@@ -1,0 +1,80 @@
+BaselineInfo:
+  WebDBID: -1
+  TimeStamp: 20250921103628
+Version:
+  Major: 11
+  Minor: 0
+  Build: 1002
+  SpecialBuildName: ""
+  ptArchitecture: x86_64_linux
+Results:
+  Results Complete: true
+  NumTestProcesses: 24
+  CPU_INTEGER_MATH: 167494.77466666669
+  CPU_FLOATINGPOINT_MATH: 90918.208862473912
+  CPU_PRIME: 322.54979749987029
+  CPU_SORTING: 82242.983444282261
+  CPU_ENCRYPTION: 41302.868943184694
+  CPU_COMPRESSION: 650692.15148581029
+  CPU_SINGLETHREAD: 4265.4483510863274
+  CPU_PHYSICS: 3199.9149952565804
+  CPU_MATRIX_MULT_SSE: 44493.777124097687
+  CPU_mm: 4259.1434585838524
+  CPU_sse: 18473.211432471762
+  CPU_fma: 57694.43309802522
+  CPU_avx: 45895.91881771051
+  CPU_avx512: 55911.545148183272
+  m_CPU_enc_SHA: 57628220267.180664
+  m_CPU_enc_AES: 39325241322.27874
+  m_CPU_enc_ECDSA: 32974129725.44709
+  ME_ALLOC_S: 0
+  ME_READ_S: 0
+  ME_READ_L: 0
+  ME_WRITE: 0
+  ME_LARGE: 0
+  ME_LATENCY: 0
+  ME_THREADED: 0
+  SUMM_CPU: 51461.86956591138
+  SUMM_ME: 0
+SystemInformation:
+  OSName: CachyOS
+  Kernel: 6.16.8-2-cachyos
+  Device: ""
+  Processor: AMD Ryzen 9 7900 12-Core Processor
+  NumSockets: 1
+  Manufacturer: AuthenticAMD
+  NumCores: 12
+  NumLogicals: 24
+  CPUFrequency: 5485
+  Memory: 31233
+  MemModuleInfo:
+    iNumMemSticks: 4
+    DIMM 1:
+      manufacturer: ""
+      modulePartNo: ""
+      memType: Unknown
+      size: 0
+      clkspeed: 0
+      moduleVoltage: 0
+    DIMM 2:
+      manufacturer: Kingston
+      modulePartNo: "KF560C36-16                   "
+      memType: DDR5
+      size: 16
+      clkspeed: 2400
+      moduleVoltage: 1.10000002
+    DIMM 3:
+      manufacturer: ""
+      modulePartNo: ""
+      memType: Unknown
+      size: 0
+      clkspeed: 0
+      moduleVoltage: 0
+    DIMM 4:
+      manufacturer: Kingston
+      modulePartNo: "KF560C36-16                   "
+      memType: DDR5
+      size: 16
+      clkspeed: 2400
+      moduleVoltage: 1.10000002
+Checksum: D2FBE707C0A583D4FC818C38879AF7436E859E68
